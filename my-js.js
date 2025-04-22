@@ -55,6 +55,8 @@ clearButton.setAttribute("style",
 );
 calculatorContainer.appendChild(clearButton);
 
+const allButtons = document.querySelectorAll("button");
+
 
 
 
