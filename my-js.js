@@ -2,28 +2,47 @@
 // const secondNumber =;
 // const operator =;
 
+const operatorsList = ["+", "-", "*", "/", "="];
+
+
 function operate(numberOne, numberTwo, mathOp) {
 
 };
 
 
 const container = document.createElement("div");
+container.setAttribute("style", 
+    `width: 190px;
+     height: 220px;`)
 document.body.appendChild(container);
+
+const displayContainer = document.createElement("div");
+displayContainer.setAttribute("style", 
+    `border: solid 3px violet;
+    padding: 20px`
+)
+container.appendChild(displayContainer);
 
 const numbersContainer = document.createElement("div");
 container.appendChild(numbersContainer);
-numbersContainer.setAttribute("style", `width: 180px;
-     height: 100px;
-     border: thick double #32a1ce;
+numbersContainer.setAttribute("style", 
+    `border: thick double #32a1ce;
      flex-wrap: wrap;`)
 
 for (let i = 1; i <= 9; i++) {
     let btn = document.createElement("button");
     btn.textContent = i;
-    btn.setAttribute("style", "width: 60px");
+    btn.setAttribute("style", "width: 60px;");
     numbersContainer.appendChild(btn);
 };
 
+for (let x = 0; x <= operatorsList.length - 1; x++) {
+    let opBtn = document.createElement("button");
+    opBtn.textContent = operatorsList[x];
+    opBtn.setAttribute("style", "width: 30px; margin-top: 15px");
+    numbersContainer.appendChild(opBtn);
+
+}
 
 
 
