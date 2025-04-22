@@ -2,7 +2,7 @@
 // const secondNumber =;
 // const operator =;
 
-const operatorsList = ["+", "-", "*", "/", "="];
+const operatorsList = ["+", "-", "*", "/", "=",];
 
 
 function operate(numberOne, numberTwo, mathOp) {
@@ -23,9 +23,9 @@ displayContainer.setAttribute("style",
 )
 container.appendChild(displayContainer);
 
-const numbersContainer = document.createElement("div");
-container.appendChild(numbersContainer);
-numbersContainer.setAttribute("style", 
+const calculatorContainer = document.createElement("div");
+container.appendChild(calculatorContainer);
+calculatorContainer.setAttribute("style", 
     `border: thick double #32a1ce;
      flex-wrap: wrap;`)
 
@@ -33,17 +33,27 @@ for (let i = 1; i <= 9; i++) {
     let btn = document.createElement("button");
     btn.textContent = i;
     btn.setAttribute("style", "width: 60px;");
-    numbersContainer.appendChild(btn);
+    calculatorContainer.appendChild(btn);
 };
 
 for (let x = 0; x <= operatorsList.length - 1; x++) {
     let opBtn = document.createElement("button");
     opBtn.textContent = operatorsList[x];
     opBtn.setAttribute("style", "width: 30px; margin-top: 15px");
-    numbersContainer.appendChild(opBtn);
+    calculatorContainer.appendChild(opBtn);
 
 }
 
+const clearButton = document.createElement("button");
+clearButton.textContent = "Clear";
+clearButton.setAttribute("style", 
+    `margin-top: 20px;
+    border: red 2px dashed;
+    padding: 5px;
+    text-align: center;
+    `
+);
+calculatorContainer.appendChild(clearButton);
 
 
 
