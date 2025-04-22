@@ -1,3 +1,39 @@
+// const firstNumber =;
+// const secondNumber =;
+// const operator =;
+
+function operate(numberOne, numberTwo, mathOp) {
+
+};
+
+
+const container = document.createElement("div");
+document.body.appendChild(container);
+
+const numbersContainer = document.createElement("div");
+container.appendChild(numbersContainer);
+numbersContainer.setAttribute("style", `width: 180px;
+     height: 100px;
+     border: thick double #32a1ce;
+     flex-wrap: wrap;`)
+
+for (let i = 1; i <= 9; i++) {
+    let btn = document.createElement("button");
+    btn.textContent = i;
+    btn.setAttribute("style", "width: 60px");
+    numbersContainer.appendChild(btn);
+};
+
+
+
+
+
+
+
+
+
+
+
 const add = function(num1, num2) {
 	return num1 + num2;
 };
