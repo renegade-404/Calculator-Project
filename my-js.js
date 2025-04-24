@@ -1,12 +1,12 @@
-// const firstNumber =;
-// const secondNumber =;
-// const operator =;
+let firstNumber, secondNumber, operator;
+
 
 const operatorsList = ["+", "-", "*", "/", "=",];
 
 
 function operate(numberOne, numberTwo, mathOp) {
-
+  
+    
 };
 
 
@@ -40,6 +40,7 @@ for (let x = 0; x <= operatorsList.length - 1; x++) {
     let opBtn = document.createElement("button");
     opBtn.textContent = operatorsList[x];
     opBtn.setAttribute("style", "width: 30px; margin-top: 15px");
+    opBtn.setAttribute("class", "mathOperator");
     calculatorContainer.appendChild(opBtn);
 
 }
@@ -57,11 +58,21 @@ calculatorContainer.appendChild(clearButton);
 
 const allButtons = document.querySelectorAll("button");
 
+let inputPhase = "firstNumber";
+for (let btn of allButtons) {
+  btn.addEventListener('click', (e) => {
 
+  if (inputPhase === "firstNumber") {
+    firstNumber = e.target.textContent;
+    inputPhase = "operator";
 
-
-
-
+  } else if (inputPhase === "operator") {
+      operator = e.target.textContent;
+      inputPhase = "secondNumber";
+      
+  } else if (inputPhase === "secondNumber") secondNumber = e.target.textContent;
+ });
+};
 
 
 
