@@ -5,7 +5,7 @@ const operatorsList = ["+", "-", "*", "/", "=",];
 
 
 function operate(numberOne, numberTwo, mathOp) {
-  
+
     
 };
 
@@ -22,6 +22,8 @@ displayContainer.setAttribute("style",
     padding: 20px`
 )
 container.appendChild(displayContainer);
+let displayPara = document.createElement("p");
+displayContainer.appendChild(displayPara);
 
 const calculatorContainer = document.createElement("div");
 container.appendChild(calculatorContainer);
@@ -64,15 +66,29 @@ for (let btn of allButtons) {
 
   if (inputPhase === "firstNumber") {
     firstNumber = e.target.textContent;
+    displayPara.textContent = firstNumber;
     inputPhase = "operator";
 
   } else if (inputPhase === "operator") {
       operator = e.target.textContent;
       inputPhase = "secondNumber";
+      displayPara.textContent += operator;
       
-  } else if (inputPhase === "secondNumber") secondNumber = e.target.textContent;
+  } else if (inputPhase === "secondNumber") {
+    secondNumber = e.target.textContent;
+    inputPhase = "calculation";
+    displayPara.textContent += secondNumber;
+
+  } else if (inputPhase === "calculation") {
+    equalSign = e.target.textContent
+    displayPara.textContent += equalSign;
+    operate();
+
+  };
  });
 };
+
+
 
 
 
