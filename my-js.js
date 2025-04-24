@@ -3,10 +3,20 @@ let firstNumber, secondNumber, operator;
 
 const operatorsList = ["+", "-", "*", "/", "=",];
 
+const operations = {
+  "+": add,
+  "-": subtract,
+  "*": multiply,
+  "/": division,
+};
 
 function operate(numberOne, numberTwo, mathOp) {
+  numberOne = +numberOne;
+  numberTwo = +numberTwo;
 
-    
+  let calc = operations[mathOp](numberOne, numberTwo);
+  displayPara.textContent += calc;
+
 };
 
 
@@ -66,7 +76,7 @@ for (let btn of allButtons) {
 
   if (inputPhase === "firstNumber") {
     firstNumber = e.target.textContent;
-    displayPara.textContent = firstNumber;
+    displayPara.textContent += firstNumber;
     inputPhase = "operator";
 
   } else if (inputPhase === "operator") {
@@ -75,51 +85,59 @@ for (let btn of allButtons) {
       displayPara.textContent += operator;
       
   } else if (inputPhase === "secondNumber") {
-    secondNumber = e.target.textContent;
-    inputPhase = "calculation";
-    displayPara.textContent += secondNumber;
+      secondNumber = e.target.textContent;
+      inputPhase = "calculation";
+      displayPara.textContent += secondNumber;
 
   } else if (inputPhase === "calculation") {
-    equalSign = e.target.textContent
-    displayPara.textContent += equalSign;
-    operate();
+      equalSign = e.target.textContent
+      displayPara.textContent += equalSign;
 
+      operate(firstNumber, secondNumber, operator);
   };
  });
 };
 
 
-
-
-
-const add = function(num1, num2) {
+function add(num1, num2) {
 	return num1 + num2;
 };
 
-const subtract = function(num1, num2) {
+function subtract(num1, num2) {
 	return num1 - num2;
 };
 
-const sum = function(arr) {
-	return arr.reduce((acc, curr) => {
-    return acc + curr;
-  }, 0);
+function multiply(num1, num2) {
+	return num1 * num2;
 };
 
-const multiply = function(arr) {
-  return arr.reduce((acc, curr) => {
-    return acc * curr;
-  }, 1);
-};
+function division(num1, num2) {
+  return (num1 / num2).toFixed(2);
+}
 
-const power = function(num, power) {
-  return num**power;
-};
 
-const factorial = function(num) {
-  if (num == 0) return 1;
-	for (let i = num - 1; i >= 1; i--) {
-    num *= i;
-  };
-  return num;
-};
+// const multiply = function(arr) {
+//   return arr.reduce((acc, curr) => {
+//     return acc * curr;
+//   }, 1);
+// };
+
+
+// const sum = function(arr) {
+// 	return arr.reduce((acc, curr) => {
+//     return acc + curr;
+//   }, 0);
+// };
+
+
+// const power = function(num, power) {
+//   return num**power;
+// };
+
+// const factorial = function(num) {
+//   if (num == 0) return 1;
+// 	for (let i = num - 1; i >= 1; i--) {
+//     num *= i;
+//   };
+//   return num;
+// };
