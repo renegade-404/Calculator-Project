@@ -84,7 +84,7 @@ function calculation() {
         if (e.target.textContent === "Clear") {
           clearDisplay();
           return;
-        } 
+        }; 
 
         if (operatorsList.includes(e.target.textContent) == true) {
           mathOp = e.target.textContent;
@@ -97,8 +97,8 @@ function calculation() {
           
         } else {
             if (numberPhase == "firstNumber") {
+              if (displayPara.textContent == "0") displayPara.textContent = "";
               numberOne += e.target.textContent;
-              displayPara.textContent = "";
               displayPara.textContent += e.target.textContent;
             } else {
               numberTwo += e.target.textContent;
