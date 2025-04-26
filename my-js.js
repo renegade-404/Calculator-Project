@@ -21,6 +21,7 @@ displayContainer.setAttribute("style",
 container.appendChild(displayContainer);
 let displayPara = document.createElement("p");
 displayPara.style.textAlign = "center";
+displayPara.textContent = "0";
 displayContainer.appendChild(displayPara);
 
 const calculatorContainer = document.createElement("div");
@@ -75,7 +76,7 @@ function calculation() {
     numberTwo = "";
     operator = "";
     numberPhase = "firstNumber";
-    displayPara.textContent = "";
+    displayPara.textContent = "0";
   };
 
     for (let btn of allButtons) {
@@ -97,6 +98,7 @@ function calculation() {
         } else {
             if (numberPhase == "firstNumber") {
               numberOne += e.target.textContent;
+              displayPara.textContent = "";
               displayPara.textContent += e.target.textContent;
             } else {
               numberTwo += e.target.textContent;
