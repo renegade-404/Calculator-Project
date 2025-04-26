@@ -1,4 +1,5 @@
 const operatorsList = ["+", "-", "*", "/", "=",];
+let result = "nothing";
 
 const operations = {
   "+": add,
@@ -59,57 +60,45 @@ calculatorContainer.appendChild(clearButton);
 
 const allButtons = document.querySelectorAll("button");
 
-
-function operate(num1, num2, mathOp) {
-  num1 = +num1;
-  num2 = +num2;
-
-  let calc = operations[mathOp](num1, num2);
-  displayPara.textContent += calc;
-};
-
 function calculation() {
-  let numberOne= "", numberTwo = "", operator = "", numberPhase = "firstNumber";
+  const inputArr = [];
+  let phaseCheck = "first";
 
-  function clearDisplay() {
-    numberOne = "";
-    numberTwo = "";
-    operator = "";
-    numberPhase = "firstNumber";
-    displayPara.textContent = "0";
+  function operate(arr) {
+    num1 = Number(arr[0]);
+    num2 = Number(arr[2]);
+    mathOp = arr[1];
+  
+    calc = operations[mathOp](num1, num2);
+    console.log(calc);
+    // currOpe.style.background = "white";
+    result = calc;
   };
 
     for (let btn of allButtons) {
       btn.addEventListener('click', (e) =>{
-        if (e.target.textContent === "Clear") {
-          clearDisplay();
-          return;
-        }; 
+
+        inputArr.push(e.target.textContent);
+        if (displayPara.textContent == "0") displayPara.textContent = "";
 
         if (operatorsList.includes(e.target.textContent) == true) {
-          mathOp = e.target.textContent;
-          displayPara.textContent += mathOp;
-          if (mathOp === "=") {
-            operate(numberOne, numberTwo, operator);
-          }
-          operator = mathOp;
-          numberPhase = "secondNumber"
+          mathOperator = e.target.textContent;
+          phaseCheck = "second";
+          if (result != "nothing") displayPara.textContent = result;
           
+          // mathOperator.style.background = "violet";
         } else {
-            if (numberPhase == "firstNumber") {
-              if (displayPara.textContent == "0") displayPara.textContent = "";
-              numberOne += e.target.textContent;
-              displayPara.textContent += e.target.textContent;
-            } else {
-              numberTwo += e.target.textContent;
-              displayPara.textContent += e.target.textContent;
-            };  
-        }; 
-    });
+          displayPara.textContent = e.target.textContent;
+          if (phaseCheck == "second") {
+            displayPara.textContent = e.target.textContent;
+            operate(inputArr);
+          };
+        };
+    });         
   };
 };
 
-calculation()
+calculation();
 
 
 function add(num1, num2) {
