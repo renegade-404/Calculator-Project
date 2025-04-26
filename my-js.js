@@ -96,7 +96,7 @@ function calculation(numberOne, numberTwo, mathOp) {
 };
 
 
-displayingPhase(firstNumber, secondNumber, operator)
+calculation(firstNumber, secondNumber, operator)
 
 
 
