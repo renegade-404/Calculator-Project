@@ -1,5 +1,3 @@
-let firstNumber = "", secondNumber = "", operator = "";
-
 const operatorsList = ["+", "-", "*", "/", "=",];
 
 const operations = {
@@ -60,26 +58,40 @@ calculatorContainer.appendChild(clearButton);
 
 const allButtons = document.querySelectorAll("button");
 
-function operate(numberOne, numberTwo, mathOp) {
-  numberOne = +numberOne;
-  numberTwo = +numberTwo;
 
-  let calc = operations[mathOp](numberOne, numberTwo);
+function operate(num1, num2, mathOp) {
+  num1 = +num1;
+  num2 = +num2;
+
+  let calc = operations[mathOp](num1, num2);
   displayPara.textContent += calc;
-
 };
 
-function calculation(numberOne, numberTwo, mathOp) {
-  numberPhase = "firstNumber"
+function calculation() {
+  let numberOne= "", numberTwo = "", operator = "", numberPhase = "firstNumber";
+
+  function clearDisplay() {
+    numberOne = "";
+    numberTwo = "";
+    operator = "";
+    numberPhase = "firstNumber";
+    displayPara.textContent = "";
+  };
+
     for (let btn of allButtons) {
       btn.addEventListener('click', (e) =>{
+        if (e.target.textContent === "Clear") {
+          clearDisplay();
+          return;
+        } 
+
         if (operatorsList.includes(e.target.textContent) == true) {
           mathOp = e.target.textContent;
-          if (mathOp === "=") {
-            displayPara.textContent += mathOp;
-            operate(numberOne, numberTwo, mathOp);
-          }
           displayPara.textContent += mathOp;
+          if (mathOp === "=") {
+            operate(numberOne, numberTwo, operator);
+          }
+          operator = mathOp;
           numberPhase = "secondNumber"
           
         } else {
@@ -89,44 +101,13 @@ function calculation(numberOne, numberTwo, mathOp) {
             } else {
               numberTwo += e.target.textContent;
               displayPara.textContent += e.target.textContent;
-            };    
+            };  
         }; 
     });
   };
 };
 
-
-calculation(firstNumber, secondNumber, operator)
-
-
-
-
-// for (let btn of allButtons) {
-//   btn.addEventListener('click', (e) => {
-
-//   if (inputPhase === "firstNumber") {
-//     firstNumber = e.target.textContent;
-//     displayPara.textContent += firstNumber;
-//     inputPhase = "operator";
-
-//   } else if (inputPhase === "operator") {
-//       operator = e.target.textContent;
-//       inputPhase = "secondNumber";
-//       displayPara.textContent += operator;
-      
-//   } else if (inputPhase === "secondNumber") {
-//       secondNumber = e.target.textContent;
-//       inputPhase = "calculation";
-//       displayPara.textContent += secondNumber;
-
-//   } else if (inputPhase === "calculation") {
-//       equalSign = e.target.textContent
-//       displayPara.textContent += equalSign;
-
-//       operate(firstNumber, secondNumber, operator);
-//   };
-//  });
-// };
+calculation()
 
 
 function add(num1, num2) {
