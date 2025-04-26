@@ -33,6 +33,7 @@ displayContainer.setAttribute("style",
 )
 container.appendChild(displayContainer);
 let displayPara = document.createElement("p");
+displayPara.style.textAlign = "center";
 displayContainer.appendChild(displayPara);
 
 const calculatorContainer = document.createElement("div");
