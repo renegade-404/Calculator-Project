@@ -1,6 +1,5 @@
 let firstNumber = "", secondNumber = "", operator = "";
 
-
 const operatorsList = ["+", "-", "*", "/", "=",];
 
 const operations = {
@@ -9,16 +8,6 @@ const operations = {
   "*": multiply,
   "/": division,
 };
-
-function operate(numberOne, numberTwo, mathOp) {
-  numberOne = +numberOne;
-  numberTwo = +numberTwo;
-
-  let calc = operations[mathOp](numberOne, numberTwo);
-  displayPara.textContent += calc;
-
-};
-
 
 const container = document.createElement("div");
 container.setAttribute("style", 
@@ -71,8 +60,17 @@ calculatorContainer.appendChild(clearButton);
 
 const allButtons = document.querySelectorAll("button");
 
+function operate(numberOne, numberTwo, mathOp) {
+  numberOne = +numberOne;
+  numberTwo = +numberTwo;
 
-function displayingPhase(numberOne, numberTwo, mathOp) {
+  let calc = operations[mathOp](numberOne, numberTwo);
+  displayPara.textContent += calc;
+
+};
+
+function calculation(numberOne, numberTwo, mathOp) {
+  numberPhase = "firstNumber"
     for (let btn of allButtons) {
       btn.addEventListener('click', (e) =>{
         if (operatorsList.includes(e.target.textContent) == true) {
@@ -82,9 +80,10 @@ function displayingPhase(numberOne, numberTwo, mathOp) {
             operate(numberOne, numberTwo, mathOp);
           }
           displayPara.textContent += mathOp;
+          numberPhase = "secondNumber"
           
         } else {
-            if (numberOne = "") {
+            if (numberPhase == "firstNumber") {
               numberOne += e.target.textContent;
               displayPara.textContent += e.target.textContent;
             } else {
