@@ -73,7 +73,6 @@ const allButtons = document.querySelectorAll("button");
 
 
 function displayingPhase(numberOne, numberTwo, mathOp) {
-  numberPhase = "firstNumber"
     for (let btn of allButtons) {
       btn.addEventListener('click', (e) =>{
         if (operatorsList.includes(e.target.textContent) == true) {
@@ -83,10 +82,9 @@ function displayingPhase(numberOne, numberTwo, mathOp) {
             operate(numberOne, numberTwo, mathOp);
           }
           displayPara.textContent += mathOp;
-          numberPhase = "secondNumber"
           
         } else {
-            if (numberPhase == "firstNumber") {
+            if (numberOne = "") {
               numberOne += e.target.textContent;
               displayPara.textContent += e.target.textContent;
             } else {
