@@ -83,7 +83,7 @@ for (let x = 0; x <= operatorsList.length - 1; x++) {
     opBtn.setAttribute("class", "mathOperator");
     calculatorContainer.appendChild(opBtn);
 
-}
+};
 
 const clearButton = document.createElement("button");
 clearButton.textContent = "Clear";
@@ -191,31 +191,5 @@ function multiply(num1, num2) {
 
 function division(num1, num2) {
   return (num1 / num2).toFixed(2);
-}
+};
 
-
-// const multiply = function(arr) {
-//   return arr.reduce((acc, curr) => {
-//     return acc * curr;
-//   }, 1);
-// };
-
-
-// const sum = function(arr) {
-// 	return arr.reduce((acc, curr) => {
-//     return acc + curr;
-//   }, 0);
-// };
-
-
-// const power = function(num, power) {
-//   return num**power;
-// };
-
-// const factorial = function(num) {
-//   if (num == 0) return 1;
-// 	for (let i = num - 1; i >= 1; i--) {
-//     num *= i;
-//   };
-//   return num;
-// };
