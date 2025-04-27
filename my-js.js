@@ -62,7 +62,7 @@ const allButtons = document.querySelectorAll("button");
 
 function calculation() {
   const inputArr = [];
-  let phaseCheck = "first";
+  let phaseCheck = "first", currentNumber = "";
 
   function operate(arr) {
     num1 = Number(arr[0]);
@@ -70,29 +70,36 @@ function calculation() {
     mathOp = arr[1];
   
     calc = operations[mathOp](num1, num2);
-    console.log(calc);
-    // currOpe.style.background = "white";
+
     result = calc;
   };
 
     for (let btn of allButtons) {
       btn.addEventListener('click', (e) =>{
+        let value = e.target.textContent;
 
-        inputArr.push(e.target.textContent);
         if (displayPara.textContent == "0") displayPara.textContent = "";
 
-        if (operatorsList.includes(e.target.textContent) == true) {
-          mathOperator = e.target.textContent;
-          phaseCheck = "second";
-          if (result != "nothing") displayPara.textContent = result;
-          
-          // mathOperator.style.background = "violet";
-        } else {
-          displayPara.textContent = e.target.textContent;
+        if (!operatorsList.includes(value)) {
           if (phaseCheck == "second") {
-            displayPara.textContent = e.target.textContent;
+            displayPara.textContent = "";
+            phaseCheck = "third";
+          };
+            currentNumber += value;
+            displayPara.textContent += value;
+ 
+        } else {
+          inputArr.push(currentNumber);
+          inputArr.push(value);
+          currentNumber = "";
+          
+          if (phaseCheck == "third") {
             operate(inputArr);
           };
+
+          phaseCheck = "second";
+
+          if (result != "nothing") displayPara.textContent = result;
         };
     });         
   };
