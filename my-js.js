@@ -74,11 +74,23 @@ function calculation() {
     result = calc;
   };
 
+function clearDisplay() {
+  phaseCheck = "first";
+  currentNumber = "";
+  displayPara.textContent = "0";
+  inputArr = [];
+}
+
     for (let btn of allButtons) {
       btn.addEventListener('click', (e) =>{
         let value = e.target.textContent;
 
         if (displayPara.textContent == "0") displayPara.textContent = "";
+
+        if (value === "Clear") {
+          clearDisplay();
+          return;
+        };
 
         if (!operatorsList.includes(value)) {
           if (phaseCheck == "second") {
