@@ -61,7 +61,7 @@ calculatorContainer.appendChild(clearButton);
 const allButtons = document.querySelectorAll("button");
 
 function calculation() {
-  const inputArr = [];
+  let inputArr = [];
   let phaseCheck = "first", currentNumber = "";
 
   function operate(arr) {
@@ -71,15 +71,20 @@ function calculation() {
   
     calc = operations[mathOp](num1, num2);
 
+
     result = calc;
+    phaseCheck = "first";
+    inputArr = [];
+    currentNumber = result;
   };
 
 function clearDisplay() {
   phaseCheck = "first";
   currentNumber = "";
   displayPara.textContent = "0";
+  result = "nothing";
   inputArr = [];
-}
+};
 
     for (let btn of allButtons) {
       btn.addEventListener('click', (e) =>{
@@ -95,6 +100,7 @@ function clearDisplay() {
         if (!operatorsList.includes(value)) {
           if (phaseCheck == "second") {
             displayPara.textContent = "";
+            targetOpe.background = "white";
             phaseCheck = "third";
           };
             currentNumber += value;
@@ -104,8 +110,11 @@ function clearDisplay() {
           inputArr.push(currentNumber);
           inputArr.push(value);
           currentNumber = "";
+          targetOpe = e.target.style;
+          targetOpe.background = "violet";
           
           if (phaseCheck == "third") {
+            targetOpe.background = "white";
             operate(inputArr);
           };
 
